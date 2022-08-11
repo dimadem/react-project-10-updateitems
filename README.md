@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# react-project-5-Adminka // # react-project-8-SavedAdminka //
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-project-10-UpdateItems //
 
-## Available Scripts
+Задачи: (10)
 
-In the project directory, you can run:
+1. реализовать сохранение добавленных админом товаров в базе данных с помощью POST-метода.
 
-### `npm start`
+2. Стили tailwind
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Задачи: (8)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Сохранить добавленные админом магазина товары в локальном хранилище
+2. Восстановить их, когда админ откроет страницу заново или перезагрузит ее
 
-### `npm test`
+3. Стейт items сохраняется в localStorage под ключом "items", используя все необходимые оптимизации.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Стейт items восстанавливается из localStorage при релоаде страницы, используя все необходимые оптимизации.
 
-### `npm run build`
+5. В качестве дополнительного мини-челленджа реализуйте динамическое изменение заголовка страницы на «Товары отсутствуют» при пустом списке товаров и «X товаров», где X — это количество добавленных товаров.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+6. Результат в виде работающего приложения присылайте своему наставнику ссылкой на codesandbox или на github-репо проекта, если работали над проектом локально с помощью create-react-app.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Не забывайте, что у вашего наставника localStorage «пустой».
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+Задачи: (5)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Цель проекта рефакторинг прошлого проекта с админкой.
+Компонент Shop разросся и самое время отрефакторить на два компонента:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. форма добавления товаров AddItem
+2. список товаров ItemsList.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- рефакторинг `<ul className="shop">...</ul>` в ItemsList. OK
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- перенос form в компонент AddItem OK
 
-## Learn More
+Shop содержит стейты:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. имени товара (name) OK
+2. описания (desc) OK
+3. валидации (valid) OK
+4. объявляются обработчики событий: OK
+   - апдейт с названием
+   - апдейт с описанием
+   - сабмит формы
+   - удаление товара из списка
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Shop.js рендерит три элемента: OK
 
-### Code Splitting
+```
+1. <AddItem /> с передачей необходимых стейтов и методов через пропсы;
+2. <div><p>Добавьте первый товар</p></div>, если список товаров пуст;
+3. <ItemList /> с передачей необходимых стейтов и методов через пропсы.
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+В итоге стейт компонентов AddItem и ItemList окажется «поднятным» до ближайшего общего предка — компонента Shop (поднять стейт еще выше до компонента App было бы ошибкой, так как он не является ближайшим).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Код готового проекта пришлите наставнику ссылкой на свой codesandbox или ссылкой на github-репозиторий.
